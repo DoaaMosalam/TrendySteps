@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "153265566543",
+    "project_id": "trendy-steps",
+    "storage_bucket": "trendy-steps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153265566543:android:0454223700af8623eb8b3a",
+        "android_client_info": {
+          "package_name": "com.doaamosallam.trendysteps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSEOE39JUMgwoHnn6LXeHCbKTG8FfYKvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
