@@ -51,6 +51,8 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+        // firebase
+    implementation("com.google.firebase:firebase-bom:32.7.2")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-analytics:21.5.1")
     implementation("com.google.firebase:firebase-database:20.3.1")
@@ -106,6 +108,8 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.50")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    // third party libraries
+    implementation("com.github.pwittchen:reactivenetwork-rx2:3.0.8")
 
     //for Serializable annotation using in type converter
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")

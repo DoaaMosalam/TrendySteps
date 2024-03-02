@@ -16,10 +16,12 @@ import android.widget.TextView
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.NavHostFragment
 import com.airbnb.lottie.LottieAnimationView
 import com.doaamosallam.trendysteps.MainActivity
 import com.doaamosallam.trendysteps.R
 import com.doaamosallam.trendysteps.auth.LoginFragment
+import com.doaamosallam.trendysteps.auth.RegisterFragment
 import com.doaamosallam.trendysteps.databinding.ActivitySplashScreenBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,8 +35,10 @@ class SplashScreen : AppCompatActivity() {
         initSplashScreen()
         super.onCreate(savedInstanceState)
         bindingSplash = DataBindingUtil.setContentView(this, R.layout.activity_splash_screen)
-
+        bindingSplash.btnCreateCount.setOnClickListener {
+        }
     }
+    // This method is used to hide the status bar and make the splash screen as a full screen activity.
     private fun initSplashScreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val splashScreen = installSplashScreen()
@@ -47,9 +51,8 @@ class SplashScreen : AppCompatActivity() {
                 )
                 slideUp.interpolator = AnticipateInterpolator()
                 slideUp.duration = 1000L
-                slideUp.doOnEnd { splashScreenViewProvider.remove()
-                    navigateToLoginFragment()
-                }
+                slideUp.doOnEnd { splashScreenViewProvider.remove() }
+                //Run the animation.
                 slideUp.start()
             }
         } else {
@@ -57,10 +60,4 @@ class SplashScreen : AppCompatActivity() {
         }
     }
 
-    private fun navigateToLoginFragment() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("navigate_to_login_fragment", true)
-        startActivity(intent)
-        finish()
-    }
 }
