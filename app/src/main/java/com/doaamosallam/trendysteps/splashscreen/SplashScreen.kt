@@ -1,6 +1,7 @@
 package com.doaamosallam.trendysteps.splashscreen
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.animation.AnticipateInterpolator
@@ -10,6 +11,7 @@ import com.doaamosallam.trendysteps.BasicActivity
 import com.doaamosallam.trendysteps.R
 import com.doaamosallam.trendysteps.databinding.ActivitySplashScreenBinding
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreen : BasicActivity<ActivitySplashScreenBinding>() {
     override fun getLayoutResId() = R.layout.activity_splash_screen
 

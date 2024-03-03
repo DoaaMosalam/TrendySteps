@@ -15,4 +15,6 @@
     <string name="full_name">Full Name</string>
     <string name="return_password">Return password</string>
     <string name="sing_up">Sing Up</string>
+    <string name="let_s_get_started">Let’s Get Started</string>
+    <string name="create_an_new_account">Create an new account</string>
 </resources>

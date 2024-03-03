@@ -61,7 +61,7 @@
                 android:src="@drawable/img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbarmain"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_main_register"
                 android:contentDescription="image brand" />
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Let’s Get Started"
+                android:text="@string/let_s_get_started"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/_10dp"
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Create an new account"
+                android:text="@string/create_an_new_account"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
