@@ -4,16 +4,18 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.HiltAndroidApp
 import io.reactivex.schedulers.Schedulers
-import com.google.firebase.crashlytics.FirebaseCrashlytics
+
 @HiltAndroidApp
-class MyApplication: Application() {
+class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         listenToNetworkConnectivity()
 
     }
+
     @SuppressLint("CheckResult")
     fun listenToNetworkConnectivity() {
         ReactiveNetwork.observeInternetConnectivity().subscribeOn(Schedulers.io())

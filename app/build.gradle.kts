@@ -40,7 +40,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
 }
@@ -51,7 +51,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-        // firebase
+    // firebase
     implementation("com.google.firebase:firebase-bom:32.7.2")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-analytics:21.5.1")
@@ -69,7 +69,7 @@ dependencies {
     //splashScreen
     implementation("androidx.core:core-splashscreen:1.0.1")
     //lottie
-    implementation ("com.airbnb.android:lottie:6.3.0")
+    implementation("com.airbnb.android:lottie:6.3.0")
     //Glide library
     implementation("com.github.bumptech.glide:glide:4.16.0")
     // circle Image
@@ -103,6 +103,10 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-common:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    // datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore:1.0.0")
+
     // Dagger Hilt dependencies
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-android-compiler:2.50")

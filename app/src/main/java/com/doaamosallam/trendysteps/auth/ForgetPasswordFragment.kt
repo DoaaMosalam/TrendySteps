@@ -1,32 +1,22 @@
 package com.doaamosallam.trendysteps.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.doaamosallam.trendysteps.BasicFragment
 import com.doaamosallam.trendysteps.R
+import com.doaamosallam.trendysteps.databinding.FragmentForgetPasswordBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class FrogetPasswordFragment : Fragment() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
+@AndroidEntryPoint
+class ForgetPasswordFragment : BasicFragment<FragmentForgetPasswordBinding>() {
+    override fun getLayoutResId() = R.layout.fragment_forget_password
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forget_password, container, false)
-    }
 
     companion object {
 
     }
+
 }
