@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".auth.RegisterFragment">
+        tools:context=".ui.auth.fragment.RegisterFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/login"
+                    android:id="@+id/register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="35sp"
@@ -55,7 +55,7 @@
             </androidx.appcompat.widget.Toolbar>
 
             <ImageView
-                android:id="@+id/imageLogin"
+                android:id="@+id/image_register"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:src="@drawable/img"
@@ -75,7 +75,7 @@
                 android:layout_marginTop="@dimen/_10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageLogin" />
+                app:layout_constraintTop_toBottomOf="@+id/image_register" />
 
             <TextView
                 android:id="@+id/txtsign"
@@ -198,7 +198,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_login"
+                    android:id="@+id/btn_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

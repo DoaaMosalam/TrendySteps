@@ -102,19 +102,17 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtsign"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@+id/txtsign">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emailTilLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10dp"
                     android:gravity="center"
                     app:helperText="*"
                     app:helperTextTextColor="@color/red"
+                    android:layout_marginTop="@dimen/_10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -134,9 +132,9 @@
                     android:id="@+id/passworrdTilLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     app:helperText="*"
                     app:helperTextTextColor="@color/red"
+                    android:layout_gravity="center"
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -157,21 +155,21 @@
                     android:id="@+id/btn_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10dp"
                     android:background="@drawable/btn_background"
                     android:enabled="false"
                     android:gravity="center"
                     android:text="@string/sing_in"
+                    android:layout_gravity="center"
                     android:textColor="@color/status_text_color"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginTop="@dimen/_10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10dp"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="@dimen/_10dp">
 
                     <View
                         android:layout_width="0dp"
@@ -198,46 +196,46 @@
                     android:id="@+id/btn_google"
                     android:layout_width="343dp"
                     android:layout_height="57dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10dp"
-                    android:background="@drawable/btn_log"
-                    android:drawableStart="@drawable/google_icon"
                     android:text="@string/login_with_google"
-                    android:textAllCaps="false" />
+                    android:layout_gravity="center"
+                    android:background="@drawable/btn_log"
+                    android:textAllCaps="false"
+                    android:drawableStart="@drawable/google_icon"
+                    android:layout_marginTop="@dimen/_10dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_facebook"
                     android:layout_width="343dp"
                     android:layout_height="57dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10dp"
-                    android:background="@drawable/btn_log"
-                    android:drawableStart="@drawable/facebook_icon"
                     android:text="@string/login_with_facebook"
-                    android:textAllCaps="false" />
+                    android:layout_gravity="center"
+                    android:background="@drawable/btn_log"
+                    android:textAllCaps="false"
+                    android:drawableStart="@drawable/facebook_icon"
+                    android:layout_marginTop="@dimen/_10dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_forgetPassword"
                     android:layout_width="117dp"
                     android:layout_height="18dp"
+                    android:background="@drawable/desgin_edittext"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:background="@drawable/desgin_edittext"
                     android:text="@string/forget_password"
-                    android:textAllCaps="false"
+                    android:textSize="12sp"
                     android:textColor="@color/blue"
-                    android:textSize="12sp" />
+                    android:textAllCaps="false" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_create_count"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
+                    android:background="@drawable/desgin_edittext"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:background="@drawable/desgin_edittext"
                     android:text="@string/don_t_have_a_account_register"
-                    android:textAllCaps="false"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textAllCaps="false" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 

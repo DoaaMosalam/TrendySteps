@@ -1,8 +1,10 @@
-package com.doaamosallam.trendysteps
+package com.doaamosallam.trendysteps.ui
 
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.doaamosallam.trendysteps.BasicActivity
+import com.doaamosallam.trendysteps.R
 import com.doaamosallam.trendysteps.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

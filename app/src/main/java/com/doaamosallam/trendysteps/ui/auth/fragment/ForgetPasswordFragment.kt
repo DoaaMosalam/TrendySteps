@@ -1,23 +1,22 @@
-package com.doaamosallam.trendysteps.auth
+package com.doaamosallam.trendysteps.ui.auth.fragment
 
 import android.os.Bundle
 import android.view.View
 import com.doaamosallam.trendysteps.BasicFragment
 import com.doaamosallam.trendysteps.R
-import com.doaamosallam.trendysteps.databinding.FragmentRegisterBinding
+import com.doaamosallam.trendysteps.databinding.FragmentForgetPasswordBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
-class RegisterFragment : BasicFragment<FragmentRegisterBinding>() {
+class ForgetPasswordFragment : BasicFragment<FragmentForgetPasswordBinding>() {
+    override fun getLayoutResId() = R.layout.fragment_forget_password
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
+
 
     companion object {
 
     }
 
-    override fun getLayoutResId() = R.layout.fragment_register
 }
