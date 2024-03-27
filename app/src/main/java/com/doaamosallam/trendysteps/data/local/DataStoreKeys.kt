@@ -6,9 +6,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.doaamosallam.trendysteps.data.local.DataStore.E_COMMERCE_PREFERENCES
+import com.doaamosallam.trendysteps.data.local.DataStoreKeys.E_COMMERCE_PREFERENCES
 
-object DataStore {
+object DataStoreKeys {
     const val E_COMMERCE_PREFERENCES = "e_commerce_preferences"
     val IS_USER_LOGGED_IN = booleanPreferencesKey("is_user_logged_in")
     val USER_ID = stringPreferencesKey("user_id")

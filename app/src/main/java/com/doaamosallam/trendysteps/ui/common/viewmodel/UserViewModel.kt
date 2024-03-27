@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.doaamosallam.trendysteps.data.repository.UserDataStoreRepositoryImpl
+import com.doaamosallam.trendysteps.data.repository.user.UserDataStoreRepositoryImpl
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 
-class UserViewModel ( private val userPreference:UserDataStoreRepositoryImpl)
+class UserViewModel ( private val userPreference: UserDataStoreRepositoryImpl)
     :ViewModel() {
     suspend fun isUserLoggedIn() = userPreference.isUserLoggedIn()
     fun setIsLoggedIn(b: Boolean) {

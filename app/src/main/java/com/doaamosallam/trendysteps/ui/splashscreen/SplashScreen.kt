@@ -15,10 +15,10 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.doaamosallam.trendysteps.BasicActivity
 import com.doaamosallam.trendysteps.R
-import com.doaamosallam.trendysteps.data.repository.UserDataStoreRepositoryImpl
+import com.doaamosallam.trendysteps.data.local.UserPreferencesDataSource
+import com.doaamosallam.trendysteps.data.repository.user.UserDataStoreRepositoryImpl
 import com.doaamosallam.trendysteps.databinding.ActivitySplashScreenBinding
 import com.doaamosallam.trendysteps.ui.auth.AuthActivity
-import com.doaamosallam.trendysteps.ui.auth.fragment.LoginFragment
 import com.doaamosallam.trendysteps.ui.common.viewmodel.UserViewModel
 import com.doaamosallam.trendysteps.ui.common.viewmodel.UserViewModelFactory
 import kotlinx.coroutines.Dispatchers.Main
@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : BasicActivity<ActivitySplashScreenBinding>() {
     private val userViewModel: UserViewModel by viewModels {
-        UserViewModelFactory(UserDataStoreRepositoryImpl(this@SplashScreen))
+        UserViewModelFactory(UserDataStoreRepositoryImpl(UserPreferencesDataSource(this)))
     }
     override fun getLayoutResId() = R.layout.activity_splash_screen
 
@@ -41,7 +41,7 @@ class SplashScreen : BasicActivity<ActivitySplashScreenBinding>() {
             val isLoggedIn = userViewModel.isUserLoggedIn().first()
             Log.d(TAG, "onCreate: isLoggedIn: $isLoggedIn")
             if (isLoggedIn) {
-                setContentView(R.layout.fragment_login)
+                setContentView(R.layout.activity_main)
             } else {
                 userViewModel.setIsLoggedIn(true)
                 goToAuthActivity()

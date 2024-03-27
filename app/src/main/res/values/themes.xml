@@ -25,5 +25,41 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
+<!--    Style image brand -->
+    <style name="style_brand_image">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:src">@drawable/img</item>
+        <item name="android:layout_marginTop">@dimen/_10dp</item>
+        <item name="android:contentDescription">@string/image_brand</item>
+    </style>
+<!--    Style text welcome-->
+    <style name="welcome_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/_10dp</item>
+    </style>
 
+<!--    style textInput-->
+    <style name="style_text_input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/_10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--style button auth -->
+    <style name="style_auth_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/_10dp</item>
+        <item name="android:background">@drawable/btn_background</item>
+        <item name="android:enabled">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/status_text_color</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>
