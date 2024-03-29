@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "153265566543",
+    "firebase_url": "https://trendy-steps-default-rtdb.firebaseio.com",
     "project_id": "trendy-steps",
     "storage_bucket": "trendy-steps.appspot.com"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.doaamosallam.trendysteps"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "153265566543-1bbdv4k5rm35me1j8etm8js5001jrcg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBSEOE39JUMgwoHnn6LXeHCbKTG8FfYKvc"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153265566543-1bbdv4k5rm35me1j8etm8js5001jrcg0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

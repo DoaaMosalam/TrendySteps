@@ -10,11 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.doaamosallam.trendysteps.BasicFragment
+import com.doaamosallam.trendysteps.BuildConfig
 import com.doaamosallam.trendysteps.R
 import com.doaamosallam.trendysteps.data.local.UserPreferencesDataSource
 import com.doaamosallam.trendysteps.data.model.Resource
@@ -24,9 +28,22 @@ import com.doaamosallam.trendysteps.databinding.FragmentLoginBinding
 import com.doaamosallam.trendysteps.ui.auth.viewmodel.LoginViewModel
 import com.doaamosallam.trendysteps.ui.auth.viewmodel.LoginViewModelFactory
 import com.doaamosallam.trendysteps.ui.common.views.ProgressDialog
+import com.doaamosallam.trendysteps.ui.showSnakeBarError
+import com.doaamosallam.trendysteps.utils.CrashlyticsUtils
+import com.doaamosallam.trendysteps.utils.Credential
+import com.doaamosallam.trendysteps.utils.LoginException
 import com.doaamosallam.trendysteps.utils.isEmailValid
 import com.doaamosallam.trendysteps.utils.isPasswordValid
-
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthCredential
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.launch
 
 
@@ -51,7 +68,7 @@ class LoginFragment : BasicFragment<FragmentLoginBinding>(), TextWatcher {
     ): View {
         binding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-//        binding.viewmodel = loginViewModel
+
         binding.loginViewModel = loginViewModel
         return binding.root
     }
@@ -67,13 +84,18 @@ class LoginFragment : BasicFragment<FragmentLoginBinding>(), TextWatcher {
         initListeners()
 
         initViewModel()
-//        initLogin()
+
+    }
+    private fun initListeners() {
+        binding.btnGoogle.setOnClickListener {
+            loginWithGoogleRequest()
+        }
     }
 
     private fun initViewModel() {
         lifecycleScope.launch {
             loginViewModel.loginState.collect { state ->
-                Log.d(TAG, "initViewModel: $state")
+
                 state.let { resource ->
                     when (resource) {
                         is Resource.Loading -> {
@@ -89,10 +111,10 @@ class LoginFragment : BasicFragment<FragmentLoginBinding>(), TextWatcher {
 
                         is Resource.Error -> {
                             progressDialog.dismiss()
-                            Log.d(TAG, "Resource.Error: ${resource.exception?.message}")
-                            Toast.makeText(
-                                requireContext(), resource.exception?.message, Toast.LENGTH_SHORT
-                            ).show()
+                            val msg = resource.exception?.message?:getString(R.string.generic_error_msg)
+
+                            view?.showSnakeBarError(resource.exception?.message ?: getString(R.string.generic_error_msg))
+                            logAuthIssueToCrashlytics(msg)
                         }
                     }
                 }
@@ -100,61 +122,63 @@ class LoginFragment : BasicFragment<FragmentLoginBinding>(), TextWatcher {
         }
     }
 
-    private fun initListeners() {
-        binding.btnLogin.setOnClickListener {
-            loginViewModel.login()
+    private fun loginWithGoogleRequest() {
+        val option = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(BuildConfig.clientServerId) // Your Web Client ID from Firebase Console
+            .requestEmail()
+            .requestProfile()
+            .build()
+
+        val googleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(requireActivity(), option)
+        googleSignInClient.signOut()
+        val signInIntent = googleSignInClient.signInIntent
+        launcher.launch(signInIntent)
+    }
+
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->
+        Log.d(TAG,"onActivityResult: ${result.resultCode}")
+        if (result.resultCode == AppCompatActivity.RESULT_OK){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            handleSignInResult(task)
+        }else{
+                view?.showSnakeBarError(getString(R.string.google_sign_in_failed_msg))
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-//        binding = null
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            firebaseAuthWithGoogle(account.idToken!!)
+        } catch (e: Exception) {
+            view?.showSnakeBarError(e.message?:getString(R.string.generic_error_msg))
+            val msg = e.message?:getString(R.string.generic_error_msg)
+           logAuthIssueToCrashlytics(msg)
+        }
+    }
+    private fun logAuthIssueToCrashlytics(msg:String){
+        CrashlyticsUtils.sendCustomLogToCrashlytics<LoginException>(
+            msg,
+            CrashlyticsUtils.LOGIN_KEY to msg
+        )
     }
 
-    companion object {
-
-        private const val TAG = "LoginFragment"
-    }
-
-
-//    private fun initViewModel() {
-//        lifecycleScope.launch {
-//            loginViewModel.loginState.collect { state ->
-//                Log.d(TAG, "initViewModel: $state")
-//                state.let { resource ->
-//                    when (resource) {
-//                        is Resource.Loading -> {
-//                            progressDialog.show()
-//                        }
-//
-//                        is Resource.Success -> {
-//                            progressDialog.dismiss()
-//                            Toast.makeText(
-//                                requireContext(), "Login successfully", Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//
-//                        is Resource.Error -> {
-//                            progressDialog.dismiss()
-//                            Log.d(TAG, "Resource.Error: ${resource.exception?.message}")
-//                            Toast.makeText(
-//                                requireContext(), resource.exception?.message, Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                        else -> {
-//                            progressDialog.dismiss()
-//                        }
-//                    }
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        loginViewModel.loginWithGoogle(idToken)
+//        val credential = GoogleAuthProvider.getCredential(idToken,null)
+//        FirebaseAuth.getInstance().signInWithCredential(credential)
+//            .addOnCompleteListener {task->
+//                if (task.isSuccessful){
+//                    Log.d(TAG,"signInWithCredential:Success")
+//                    val email = task.result.user?.uid
+//                    Log.d(TAG,"firebaseAuthWithGoogle:$email")
+//                }else{
+//                    Log.d(TAG,"signInWithCredential:failure",task.exception)
 //                }
 //            }
-//        }
-//    }
+    }
 
-//    private fun initListener(){
-//        binding.btnLogin.setOnClickListener {
-//            loginViewModel.login()
-//        }
-//    }
+
+
     private fun initLogin(){
         binding.btnLogin.setOnClickListener {v->
 
@@ -244,5 +268,9 @@ class LoginFragment : BasicFragment<FragmentLoginBinding>(), TextWatcher {
             }
         }
         return binding.passworrdTilLogin.error == null
+    }
+
+    companion object{
+        const val TAG="Login"
     }
 }

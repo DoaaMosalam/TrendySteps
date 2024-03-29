@@ -1,5 +1,6 @@
 package com.doaamosallam.trendysteps.ui.auth.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -39,11 +40,11 @@ class LoginViewModel(
     fun login() = viewModelScope.launch {
         val email = email.value
         val password = password.value
-        if (isLoginIsValid.first()) {
+        Log.d("Login","Login User${email } ${password}")
+        if (isLoginIsValid.first()){
             authRepository.loginWithEmailAndPassword(email, password).onEach { resource ->
                 when (resource) {
                     is Resource.Success -> {
-//                            userPrefs.saveUserEmail(email)
                         _loginState.emit(Resource.Success(resource.data ?: "Empty User Id"))
                     }
 
@@ -54,6 +55,19 @@ class LoginViewModel(
             _loginState.emit(Resource.Error(Exception("Invalid email or password")))
         }
     }
+
+    fun loginWithGoogle(idToken:String) = viewModelScope.launch {
+        authRepository.loginWithGoogle(idToken).onEach {resource->
+            when(resource){
+                is Resource.Success->{
+                    _loginState.emit(Resource.Success(resource.data?:"Empty User Id"))
+                }
+
+                else -> _loginState.emit(resource)
+            }
+        }.launchIn(viewModelScope)
+    }
+
 
     companion object {
         private const val TAG = "LoginViewModel"

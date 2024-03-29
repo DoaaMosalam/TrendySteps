@@ -6,7 +6,7 @@
     <data>
         <variable
             name="loginViewModel"
-            type="com.doaamosallam.trendysteps.ui.auth.viewmodel.LoginViewModel" />
+            type="com.doaamosallam.trendysteps.ui.auth.viewmodel.LoginViewModel"/>
 
     </data>
 
@@ -85,6 +85,7 @@
                             android:backgroundTint="@color/white"
                             android:drawableStart="@drawable/baseline_email_24"
                             android:hint="@string/your_email"
+                            android:text="@={loginViewModel.email}"
                             android:padding="5dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,6 +106,7 @@
                             android:drawableStart="@drawable/baseline_lock_24"
                             android:ems="10"
                             android:hint="@string/password"
+                            android:text="@={loginViewModel.password}"
                             android:inputType="textPassword"
                             android:padding="@dimen/_5dp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -112,6 +114,7 @@
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_login"
                         style="@style/style_auth_button"
+                        android:onClickListener="@{() -> loginViewModel.login()}"
                         android:text="@string/sing_in" />
 
                     <LinearLayout

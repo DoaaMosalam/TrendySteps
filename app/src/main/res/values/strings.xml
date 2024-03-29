@@ -22,4 +22,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm">Confirm</string>
     <string name="loading">loading</string>
+    <string name="ok">OK</string>
+    <string name="retry">Retry</string>
+    <string name="google_sign_in_failed_msg">Google sign in failed, please retry again later</string>
+    <string name="generic_error_msg">Error, Please try again later.</string>
+
 </resources>

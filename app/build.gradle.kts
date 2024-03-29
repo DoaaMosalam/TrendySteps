@@ -11,6 +11,7 @@ plugins {
 }
 
 android {
+
     namespace = "com.doaamosallam.trendysteps"
     compileSdk = 34
 
@@ -31,6 +32,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+            forEach {
+                it.buildConfigField(
+                    "String",
+                    "clientServerId",
+                    "\"153265566543-1bbdv4k5rm35me1j8etm8js5001jrcg0.apps.googleusercontent.com\""
+                )
         }
     }
     compileOptions {
@@ -55,14 +63,13 @@ dependencies {
     // firebase kotlin
     implementation("com.google.firebase:firebase-bom:32.8.0")
     implementation("com.google.firebase:firebase-auth:22.3.1")
-    implementation("com.google.firebase:firebase-firestore:24.10.3")
-//    implementation("com.google.firebase:firebase-firestore-ktx")
-//    implementation("com.google.firebase:firebase-auth-ktx")
+
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.11.0")
+    implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
+    implementation("com.google.firebase:firebase-database-ktx:20.3.1")
     implementation("com.google.android.gms:play-services-auth:21.0.0")
     implementation("com.google.firebase:firebase-analytics:21.6.1")
-    implementation("com.google.firebase:firebase-database:20.3.1")
-
-    implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.google.firebase:firebase-functions:20.4.0")
     implementation("com.google.firebase:firebase-crashlytics:18.6.3")
     implementation("com.google.firebase:firebase-messaging:23.4.1")
