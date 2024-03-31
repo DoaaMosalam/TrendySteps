@@ -39,6 +39,21 @@ android {
                     "clientServerId",
                     "\"153265566543-1bbdv4k5rm35me1j8etm8js5001jrcg0.apps.googleusercontent.com\""
                 )
+                it.resValue(
+                    "string",
+                    "facebook_app_id",
+                    "\"1808287823018581\""
+                )
+                it.resValue(
+                    "string",
+                    "fb_login_protocol_scheme",
+                    "\"fb1808287823018581\""
+                )
+                it.resValue(
+                    "string",
+                    "facebook_client_token",
+                    "\"7b643e5846f6fc26071bba89d3eec3a5\""
+                )
         }
     }
     compileOptions {
@@ -65,6 +80,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.3.1")
 
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    implementation ("com.facebook.android:facebook-login:16.0.0")
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.0")
     implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
     implementation("com.google.firebase:firebase-database-ktx:20.3.1")
@@ -74,6 +90,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics:18.6.3")
     implementation("com.google.firebase:firebase-messaging:23.4.1")
     implementation("com.google.firebase:firebase-config:21.6.3")
+
     implementation("androidx.activity:activity:1.8.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -68,6 +68,18 @@ class LoginViewModel(
         }.launchIn(viewModelScope)
     }
 
+    fun loginWithFacebook(token: String) =viewModelScope.launch{
+        authRepository.loginWithFacebook(token).onEach { resource ->
+            when(resource){
+                is Resource.Success->
+                    _loginState.emit(Resource.Success(resource.data?:"Empty User Id"))
+
+                else -> _loginState.emit(resource)
+            }
+        }.launchIn(viewModelScope)
+        
+    }
+
 
     companion object {
         private const val TAG = "LoginViewModel"
@@ -87,55 +99,5 @@ class LoginViewModelFactory(
     }
 
 }
-//    val loginState: MutableStateFlow<Resource<String>?> = MutableStateFlow(null)
-//
-//   val email = MutableStateFlow("")
-//    val password = MutableStateFlow("")
-//
-//    private val isLoginIsValid:Flow<Boolean> = combine(email, password) { email, password ->
-//        email.isEmailValid() && password.isPasswordValid()
-//    }
-//   fun login() = viewModelScope.launch {
-//       val email = email.value
-//       val password = password.value
-//       if(isLoginIsValid.first()){
-//           authRepository.loginWithEmailAndPassword(email,password).onEach { resource->
-//               when(resource){
-//                   is Resource.Loading -> loginState.update { Resource.Loading() }
-//                   is Resource.Success -> {
-////                          userPrefs.saveUserEmail(email)
-//                          loginState.update { Resource.Success(resource.data?:"Empty user ID") }
-//                   }
-//                   is Resource.Error -> loginState.value =
-//                       Resource.Error(resource.exception?: Exception ( "An error occurred"))
-//               }
-//           }.launchIn(viewModelScope)
-//       }else{
-//           loginState.value = Resource.Error(Exception("Invalid email or password"))
-//       }
-//   }
-//
-//
-//
-//
-//    companion object {
-//        private const val TAG = "LoginViewModel"
-//    }
-//
-//}
-//
-//
-//// create viewmodel factory class
-//class LoginViewModelFactory(
-//    private val userPrefs: UserPreferenceRepository,
-//    private val authRepository: FirebaseAuthRepository
-//) : ViewModelProvider.Factory {
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-//            @Suppress("UNCHECKED_CAST") return LoginViewModel(userPrefs, authRepository) as T
-//        }
-//        throw IllegalArgumentException("Unknown ViewModel class")
-//    }
-//}
 
 

@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Trendy Steps</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+<!--    <string name="facebook_app_id">1808287823018581</string>-->
+<!--    <string name="fb_login_protocol_scheme">fb1808287823018581</string>-->
+<!--    <string name="facebook_client_token">7b643e5846f6fc26071bba89d3eec3a5</string>-->
+<!--    <string name="facebook_app_secret">78b25978a30d1c72fe69d43e67f7be75</string>-->
+
+
     <string name="image_brand" translatable="false">image brand</string>
     <string name="welcome_to_trendy_steps">Welcome to Trendy Steps</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
